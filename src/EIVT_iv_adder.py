@@ -10,17 +10,12 @@ class IVAdder:
         print(self.info_message)
         self.dbWorker.connect()
         while True:
-            user_input = input("Enter irregular verb: ").lower()
-            if 'e' == user_input:
-                self._exit_add_process(self)
-                break
-            elif 'exit' == user_input:
+            user_input = input("Enter irregular verb(or 'i' to info): ").lower()
+            if 'e' == user_input or 'exit' == user_input:
                 self._exit_add_process()
                 break
-            if 'i' == user_input:
+            elif 'i' == user_input or 'info' == user_input:
                 print(self.info_message)
-            elif 'info' == user_input:
-               print(self.info_message)
             else:
                 self._add_irregular_verb(user_input)
 
