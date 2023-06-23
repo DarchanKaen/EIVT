@@ -14,12 +14,16 @@ class DBWorker:
     def disconnect(self):
         self.connection.close()
 
-    def execute(self, querry):
-        self.cursor.execute(querry)
+    def execute(self, query, params):
+        self.cursor.execute(query, params)
+        self.connection.commit()
 
     def createTable(self):
-        create_table_query = "CREATE TABLE eivt (id INTEGER PRIMARY_KEY, form_I TEXT, form_II TEXT, form_III TEXT)"
-        self.cursor.execute(create_table_query)
+        try:
+            create_table_query = "CREATE TABLE eivt (id INTEGER PRIMARY KEY AUTOINCREMENT, form_I TEXT, form_II TEXT, form_III TEXT)"
+            self.cursor.execute(create_table_query)
+        except BaseException:
+            print("EIVT_WARNING: eivt table already exist.")
 
 
 
