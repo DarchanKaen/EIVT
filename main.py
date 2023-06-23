@@ -1,28 +1,38 @@
+from src.EIVT_db_worker import DBWorker
+from src.EIVT_iv_adder import IVAdder
+
+
 version = "0.01"
-modes_info_message = "Available Modes: \n\tTraining = 1 \n\tAdd = 2 \n\tStatistics = 3 \n\tExport verbs = 4 \n\tInfo = 5 \n\tExit = 0"
+modes_info_message = "Available Modes: \n\tTraining = 't' or 'training' \n\tAdd = 'a' or 'add' \n\tStatistics = 's' or 'stats' \n\tExport verbs = 'x' or 'export' \n\tInfo = 'i' or 'info' \n\tExit = 'e' or 'exit'"
 modes_error_message = "Incorrect mode!"
+
+dbWorker = DBWorker()
+ivAdder = IVAdder(dbWorker)
 
 print(f"Welcome to the English Irrefular Verbs Trainer [EIVT]. v{version}")
 print(modes_info_message)
 
 while True:    
-    mode_pre = input("Please, select Mode:")
+    mode = input("Please, select Mode (or 'i' to info): ").lower()
     try:
-        mode = int(mode_pre)
-        if 0 == mode:
+        if 'e' == mode or 'exit' == mode:
             print("EXIT MODE!")
             break
-        elif 1 == mode:
+        elif 't' == mode or 'training' == mode:
             print("TRAINING MODE!")
-        elif 2 == mode:
+        elif 'a' == mode or 'add' == mode:
             print("ADD MODE!")
-        elif 3 == mode:
+            dbWorker.connect()
+            dbWorker.createTable()
+            dbWorker.disconnect()
+            ivAdder.add_process()
+        elif 's' == mode or 'stats' == mode:
             print("STATISTICS MODE!")
-        elif 4 == mode:
+        elif 'x' == mode or 'export' == mode:
             print("EXPORT MODE!")
-        elif 5 == mode:
+        elif 'i' == mode or 'info' == mode:
             print(modes_info_message)
         else:
-            print(modes_error_message )  
-    except:
-        print(modes_error_message)
+            print(modes_error_message)  
+    except BaseException as error:
+        print(error)
