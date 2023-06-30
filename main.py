@@ -1,16 +1,17 @@
 from src.EIVT_db_worker import DBWorker
 from src.EIVT_vocab_worker import VocabWorker
+from src.EIVT_training_worker import TrainingWorker
 
 
-version = "0.01"
+app_version = "0.06"
 modes_info_message = "Available Modes: \n\tTraining = 't' or 'training' \n\tAdd = 'a' or 'add' \n\tStatistics = 's' or 'stats' \n\tExport verbs = 'x' or 'export' \n\tInfo = 'i' or 'info' \n\tExit = 'e' or 'exit'"
 modes_error_message = "Incorrect mode!"
 
-#for create database run EIVT_db_worker.py
-db_worker = DBWorker()
+db_worker = DBWorker()  #for create database run EIVT_db_worker.py !!!
 vocab_worker = VocabWorker(db_worker)
+training_worker = TrainingWorker(vocab_worker)
 
-print(f"Welcome to the English Irregular Verbs Trainer [EIVT]. v{version}")
+print(f"Welcome to the English Irregular Verbs Trainer [EIVT]. v{app_version}")
 print(modes_info_message)
 
 while True:    
@@ -22,7 +23,8 @@ while True:
 
         elif 't' == mode or 'training' == mode:
             print("TRAINING MODE!")
-            vocab_worker.get_random_irregular_verbs(3)
+            #vocab_worker.get_random_irregular_verbs(3)
+            training_worker.training_process()
 
         elif 'a' == mode or 'add' == mode:
             print("ADD MODE!")

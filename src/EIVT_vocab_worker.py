@@ -59,6 +59,7 @@ class VocabWorker:
             #random_iverb = (random_iverb[1], random_iverb[2], random_iverb[3])
             self.random_iverbs_list.append(random_iverb)
         print("random_iverbs:", self.random_iverbs_list)
+        return self.random_iverbs_list
 
 
     def exit_add_process(self):
@@ -66,6 +67,7 @@ class VocabWorker:
 
 
     def get_iverbs_limit(self):
+        self.get_all_irregular_verbs() 
         return self.iverbs_limit
 
 
