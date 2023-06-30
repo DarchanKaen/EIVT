@@ -28,7 +28,7 @@ class TrainingWorker:
                 if True == question_result:
                     training_result += 1
             print(f"~~Correct answers: {training_result} / {self.questions_count}. \n\tTraining finished!")
-            self.statistics_worker.addStats(training_result, self.questions_count)
+            self.statistics_worker.add_stats(training_result, self.questions_count)
 
 
     def __training_prepare(self):

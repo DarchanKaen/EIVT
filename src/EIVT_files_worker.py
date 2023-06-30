@@ -20,6 +20,16 @@ class FilesWorker:
             print(error)
         return result_directory_path
 
+    def get_files_list_from_directory(self, directory_name):
+        directory_files = []
+        try:
+            directory_files = [file for file in os.listdir(directory_name) if os.path.isfile(os.path.join(directory_name, file))]
+        except BaseException as error:
+            print(f"EIVT_ERROR: cannot fin files in directory: `{directory_name}`!")
+            print(error)
+        return directory_files
+        
+
     def append_text_to_file(self, file_text, file_name, file_directory):
         print("file_name, file_directory:", file_name, file_directory)
         try:
@@ -27,9 +37,8 @@ class FilesWorker:
             print("file_full_path:", file_full_path)
             with open(file_full_path, "a") as some_file:
                 some_file.write(file_text + "\n")
-            pass
         except BaseException as error:
-            print(f"EIVT_ERROR: add text to file: `{file_name}` in dirctory: `{file_directory}`!")
+            print(f"EIVT_ERROR: add text to file: `{file_name}` in directory: `{file_directory}`!")
             print(error)
         
         
