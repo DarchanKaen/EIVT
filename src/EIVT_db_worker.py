@@ -20,10 +20,8 @@ class DBWorker:
 
     def execute_and_return(self, query, params = None):
         if None != params:
-            print("_EXIST PARAMS!", params)
             self.cursor.execute(query, params)
         else:
-            print("_NONE PARAMS!", params)
             self.cursor.execute(query)
         execution_result = self.cursor.fetchall()
         return execution_result
@@ -35,5 +33,11 @@ class DBWorker:
         except BaseException:
             print("EIVT_WARNING: eivt table already exist.")
 
+
+if "__main__" == __name__:
+    db_worker = DBWorker()
+    db_worker.connect()
+    db_worker.createTable()
+    db_worker.disconnect()
 
 
