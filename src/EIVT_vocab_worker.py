@@ -1,6 +1,7 @@
 from random import choice
 
 
+
 class VocabWorker:
     
     def __init__(self, db_worker):
