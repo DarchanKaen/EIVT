@@ -1,15 +1,17 @@
 from src.EIVT_db_worker import DBWorker
 from src.EIVT_iv_adder import IVAdder
+from src.EIVT_iv_trainer import IVTrainer
 
 
 version = "0.01"
 modes_info_message = "Available Modes: \n\tTraining = 't' or 'training' \n\tAdd = 'a' or 'add' \n\tStatistics = 's' or 'stats' \n\tExport verbs = 'x' or 'export' \n\tInfo = 'i' or 'info' \n\tExit = 'e' or 'exit'"
 modes_error_message = "Incorrect mode!"
 
-dbWorker = DBWorker()
-ivAdder = IVAdder(dbWorker)
+db_worker = DBWorker()
+iv_adder = IVAdder(db_worker)
+iv_trainer = IVTrainer(db_worker)
 
-print(f"Welcome to the English Irrefular Verbs Trainer [EIVT]. v{version}")
+print(f"Welcome to the English Irregular Verbs Trainer [EIVT]. v{version}")
 print(modes_info_message)
 
 while True:    
@@ -20,12 +22,13 @@ while True:
             break
         elif 't' == mode or 'training' == mode:
             print("TRAINING MODE!")
+            iv_trainer.get_all_irregular_verbs()
         elif 'a' == mode or 'add' == mode:
             print("ADD MODE!")
-            dbWorker.connect()
-            dbWorker.createTable()
-            dbWorker.disconnect()
-            ivAdder.add_process()
+            db_worker.connect()
+            db_worker.createTable()
+            db_worker.disconnect()
+            iv_adder.add_process()
         elif 's' == mode or 'stats' == mode:
             print("STATISTICS MODE!")
         elif 'x' == mode or 'export' == mode:

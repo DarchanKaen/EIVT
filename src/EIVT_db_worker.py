@@ -18,6 +18,16 @@ class DBWorker:
         self.cursor.execute(query, params)
         self.connection.commit()
 
+    def execute_and_return(self, query, params = None):
+        if None != params:
+            print("_EXIST PARAMS!", params)
+            self.cursor.execute(query, params)
+        else:
+            print("_NONE PARAMS!", params)
+            self.cursor.execute(query)
+        execution_result = self.cursor.fetchall()
+        return execution_result
+
     def createTable(self):
         try:
             create_table_query = "CREATE TABLE eivt (id INTEGER PRIMARY KEY AUTOINCREMENT, form_I TEXT, form_II TEXT, form_III TEXT)"
