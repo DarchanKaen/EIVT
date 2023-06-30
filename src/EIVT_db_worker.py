@@ -47,5 +47,6 @@ if "__main__" == __name__:
     db_worker.connect()
     db_worker.createTable()
     db_worker.disconnect()
+    print("EIVT table created successfully!")
 
 

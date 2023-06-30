@@ -21,6 +21,7 @@ class FilesWorker:
             print(error)
         return result_directory_path
 
+
     def get_files_list_from_directory(self, directory_name):
         directory_files = []
         try:
@@ -40,6 +41,7 @@ class FilesWorker:
             print(f"EIVT_ERROR: cannot add text to file: `{file_name}` in directory: `{file_directory}`!")
             print(error)
 
+
     def append_data_to_file(self, file_data, file_name, file_directory):
         try:
             file_full_path = os.path.join(file_directory, file_name)
@@ -50,6 +52,18 @@ class FilesWorker:
             print(f"EIVT_ERROR: cannot export data to: `{file_name}` in directory: `{file_directory}`!")
             print(error)   
         
+    
+    def read_data_from_file(self, file_name, file_directory):
+        file_data = []
+        try:
+            file_full_path = os.path.join(file_directory, file_name)
+            with open(file_full_path, "r") as some_file:
+                for data_line in some_file:
+                    file_data.append(data_line)
+        except BaseException as error:
+            print(f"EIVT_ERROR: cannot import data from: `{file_name}` in directory: `{file_directory}`!")
+            print(error)   
+        return file_data
 
 
     
