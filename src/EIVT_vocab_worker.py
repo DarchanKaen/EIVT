@@ -12,13 +12,26 @@ class VocabWorker:
         self.random_iverbs_list = []
 
 
+    def add_process(self):
+        self.db_worker.connect() 
+        while True:
+            user_input = input("Enter irregular verb(or 'i' to info / 'e' to exit): ").lower()
+            if 'e' == user_input or 'exit' == user_input:
+                self.exit_add_process()
+                break
+            elif 'i' == user_input or 'info' == user_input:
+                print(self.info_message)
+            else:
+                self.add_irregular_verb(user_input)
+
+
     def add_irregular_verb(self, iv_string):   
         self.get_all_irregular_verbs() 
         self.db_worker.connect() 
         iv_splitted = iv_string.split()
         if len(iv_splitted) != self.max_iv_length:  
             print(f"EIVT_ERROR: incorrect words count, must be {self.max_iv_length}")
-            self.db_worker.disconnect()
+            self.exit_add_process()
             return False
         else:
             iverb_tuple = (iv_splitted[0], iv_splitted[1], iv_splitted[2])
@@ -26,7 +39,8 @@ class VocabWorker:
                 self.db_worker.execute(self.add_query, iverb_tuple) 
             else:
                 print(f"EIVT_ERROR: this verb already exist!")
-            self.db_worker.disconnect()
+            self.exit_add_process()
+
 
     def get_all_irregular_verbs(self):
         self.db_worker.connect()
