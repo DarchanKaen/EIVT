@@ -23,6 +23,7 @@ while True:
         elif 't' == mode or 'training' == mode:
             print("TRAINING MODE!")
             iv_trainer.get_all_irregular_verbs()
+            iv_trainer.get_random_irregular_verbs(3)
         elif 'a' == mode or 'add' == mode:
             print("ADD MODE!")
             db_worker.connect()
