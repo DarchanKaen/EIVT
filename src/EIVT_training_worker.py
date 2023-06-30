@@ -2,10 +2,12 @@ from random import randint
 from src.EIVT_question import Question
 
 
+
 class TrainingWorker:
     
-    def __init__(self, vocab_worker):
+    def __init__(self, vocab_worker, statistics_worker):
         self.vocab_worker = vocab_worker
+        self.statistics_worker = statistics_worker
         self.max_question_variants = 3
         self.questions_count = 0
         self.iverb_delimiter = "/"
@@ -18,7 +20,6 @@ class TrainingWorker:
         else:
             random_verbs_list = self.vocab_worker.get_random_irregular_verbs(self.questions_count)
             questions_list = self.__create_questions(random_verbs_list)
-
             training_result = 0
             for i in range(self.questions_count):
                 question = questions_list[i]
@@ -27,7 +28,7 @@ class TrainingWorker:
                 if True == question_result:
                     training_result += 1
             print(f"~~Correct answers: {training_result} / {self.questions_count}. \n\tTraining finished!")
-
+            self.statistics_worker.addStats(training_result, self.questions_count)
 
 
     def __training_prepare(self):

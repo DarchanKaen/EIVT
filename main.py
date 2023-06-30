@@ -1,6 +1,17 @@
+import os
 from src.EIVT_db_worker import DBWorker
+from src.EIVT_files_worker import FilesWorker
 from src.EIVT_vocab_worker import VocabWorker
+from src.EIVT_statistics_worker import StatisticsWorker
 from src.EIVT_training_worker import TrainingWorker
+
+
+self_path = os.path.dirname(__file__)
+db_worker = DBWorker()  #for create database run EIVT_db_worker.py !!!
+files_worker = FilesWorker(self_path)
+vocab_worker = VocabWorker(db_worker)
+statistics_worker = StatisticsWorker(files_worker)
+training_worker = TrainingWorker(vocab_worker, statistics_worker)
 
 
 app_codename = "[EIVT]"
@@ -10,12 +21,10 @@ app_the = f"{app_name}. v{app_version}"
 modes_info_message = "Available Modes: \n\tTraining = 't' or 'training' \n\tAdd = 'a' or 'add' \n\tStatistics = 's' or 'stats' \n\tExport verbs = 'x' or 'export' \n\tInfo = 'i' or 'info' \n\tExit = 'e' or 'exit'"
 modes_error_message = "Incorrect mode!"
 
-db_worker = DBWorker()  #for create database run EIVT_db_worker.py !!!
-vocab_worker = VocabWorker(db_worker)
-training_worker = TrainingWorker(vocab_worker)
 
 print(f"Welcome to the {app_name}. v{app_version}")
 print(modes_info_message)
+
 
 while True:    
     mode = input(f"{app_codename}. Please, select Mode (or 'i' to info / 'e' to exit): ").lower()
