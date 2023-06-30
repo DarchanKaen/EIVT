@@ -49,6 +49,7 @@ class VocabWorker:
         self.all_iverbs_list = self.db_worker.execute_and_return(self.select_all_query)
         self.iverbs_limit = len(self.all_iverbs_list)
         self.db_worker.disconnect()
+        return self.all_iverbs_list
 
 
     def get_random_irregular_verbs(self, max_iverbs):

@@ -4,6 +4,8 @@ from src.EIVT_files_worker import FilesWorker
 from src.EIVT_vocab_worker import VocabWorker
 from src.EIVT_statistics_worker import StatisticsWorker
 from src.EIVT_training_worker import TrainingWorker
+from src.EIVT_export_worker import ExportWorker
+
 
 
 self_path = os.path.dirname(__file__)
@@ -12,6 +14,7 @@ files_worker = FilesWorker(self_path)
 vocab_worker = VocabWorker(db_worker)
 statistics_worker = StatisticsWorker(files_worker)
 training_worker = TrainingWorker(vocab_worker, statistics_worker)
+export_worker = ExportWorker(vocab_worker, files_worker)
 
 
 app_codename = "[EIVT]"
@@ -41,7 +44,7 @@ while True:
         elif 's' == mode or 'stats' == mode:
             statistics_worker.get_stats()
         elif 'x' == mode or 'export' == mode:
-            print("EXPORT MODE!")
+            export_worker.export_data()
         elif 'i' == mode or 'info' == mode:
             print(modes_info_message)
         else:
