@@ -56,9 +56,7 @@ class VocabWorker:
         random_indexes = self.__get_random_indexes(max_iverbs)
         for random_index in random_indexes:
             random_iverb = self.all_iverbs_list[random_index]
-            #random_iverb = (random_iverb[1], random_iverb[2], random_iverb[3])
             self.random_iverbs_list.append(random_iverb)
-        print("random_iverbs:", self.random_iverbs_list)
         return self.random_iverbs_list
 
 
