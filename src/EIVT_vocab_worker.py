@@ -10,6 +10,7 @@ class VocabWorker:
         self.add_query = "INSERT INTO eivt (form_I, form_II, form_III) VALUES (?, ? ,?)"
         self.all_iverbs_list = []
         self.random_iverbs_list = []
+        self.iverbs_limit = 0
 
 
     def add_process(self):
@@ -45,6 +46,7 @@ class VocabWorker:
     def get_all_irregular_verbs(self):
         self.db_worker.connect()
         self.all_iverbs_list = self.db_worker.execute_and_return(self.select_all_query)
+        self.iverbs_limit = len(self.all_iverbs_list)
         self.db_worker.disconnect()
 
 
@@ -63,11 +65,14 @@ class VocabWorker:
         self.db_worker.disconnect()
 
 
+    def get_iverbs_limit(self):
+        return self.iverbs_limit
+
+
     def __get_random_indexes(self, max_iverbs):
-        limit = len(self.all_iverbs_list)
-        if max_iverbs > limit or max_iverbs < 1:
-            max_iverbs = limit
-        all_indexes_list = list(range(limit))
+        if max_iverbs > self.iverbs_limit or max_iverbs < 1:
+            max_iverbs = self.iverbs_limit
+        all_indexes_list = list(range(self.iverbs_limit))
         random_idexes_list = []
         for _ in range(max_iverbs):
             random_index = choice(all_indexes_list)
