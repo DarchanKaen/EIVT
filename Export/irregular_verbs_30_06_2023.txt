@@ -1,9 +1,0 @@
-awake;awoke;awaken
-be;was/were;been
-beat;beat;beaten
-begin;began;begun
-bite;bit;bitten
-blow;blew;blown
-break;broke;broken
-bring;brought;brought
-build;built;built
