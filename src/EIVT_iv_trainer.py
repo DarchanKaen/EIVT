@@ -2,9 +2,11 @@ from random import choice
 
 
 class IVTrainer:
+    
     def __init__(self, db_worker):
         self.db_worker = db_worker
-        self.get_all_query = "SELECT * FROM eivt"
+        #self.get_all_query = "SELECT * FROM eivt"
+        self.get_all_query = "SELECT form_I, form_II, form_III FROM eivt"
         self.all_iverbs_list = []
         self.random_iverbs_list = []
 
@@ -20,8 +22,9 @@ class IVTrainer:
         random_indexes = self.__get_random_indexes(max_iverbs)
         for random_index in random_indexes:
             random_iverb = self.all_iverbs_list[random_index]
-            random_iverb = (random_iverb[1], random_iverb[2], random_iverb[3])
+            #random_iverb = (random_iverb[1], random_iverb[2], random_iverb[3])
             self.random_iverbs_list.append(random_iverb)
+        print("randov_iverbs:", self.random_iverbs_list)
 
 
     def __clear_previous_random_iverbs(self):
