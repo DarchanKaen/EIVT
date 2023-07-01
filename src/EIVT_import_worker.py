@@ -17,7 +17,7 @@ class ImportWorker:
             is_imported = self.vocab_worker.add_irregular_verb(iv_string)
             if True == is_imported:
                  unique_imported_count += 1
-        print("Import finished successfully! Imported {unique_imported_count} unique irregular verbs.")
+        print(f"Import finished successfully! Imported {unique_imported_count} unique irregular verbs.")
 
 
     def __format_import_data(self, unformatted_import_data):

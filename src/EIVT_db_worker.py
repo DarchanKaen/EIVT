@@ -8,6 +8,7 @@ class DBWorker:
         self.db_name = "eivt_db"
         self.connection = None
         self.cursor = None
+        self.createTable()
 
 
     def connect(self):
@@ -35,18 +36,13 @@ class DBWorker:
 
     def createTable(self):
         try:
+            self.connect()
             create_table_query = "CREATE TABLE eivt (id INTEGER PRIMARY KEY AUTOINCREMENT, form_I TEXT, form_II TEXT, form_III TEXT)"
             self.cursor.execute(create_table_query)
+            self.disconnect()
+            print("EIVT table created successfully!")
         except BaseException:
             print("EIVT_WARNING: eivt table already exist.")
 
-
-
-if "__main__" == __name__:
-    db_worker = DBWorker()
-    db_worker.connect()
-    db_worker.createTable()
-    db_worker.disconnect()
-    print("EIVT table created successfully!")
 
 
