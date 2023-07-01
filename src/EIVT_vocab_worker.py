@@ -41,7 +41,7 @@ class VocabWorker:
                 self.db_worker.execute(self.add_query, iverb_tuple) 
                 return True
             else:
-                print(f"EIVT_ERROR: this verb already exist!")
+                print(f"EIVT_ERROR: verb `{iverb_tuple}` already exist!")
                 return False
             self.exit_add_process()
 

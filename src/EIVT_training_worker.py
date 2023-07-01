@@ -32,14 +32,23 @@ class TrainingWorker:
 
 
     def __training_prepare(self):
-        message = "Please, input how many questions you want to answer. Or 0 to exit: "
+        message = "Please, input how many questions you want to answer (also 'q' for 5, 'w' for 10, 'e' for 20). Or 0 to exit: "
         try:
-            self.questions_count = int(input(message))
+            user_input = input(message).lower()
+            if "q" == user_input:
+                self.questions_count = 5
+            elif "w" == user_input:
+                self.questions_count = 10
+            elif "e" == user_input:
+                self.questions_count = 20
+            else:
+                self.questions_count = int(user_input)
             iverbs_limit = self.vocab_worker.get_iverbs_limit()
             if self.questions_count > iverbs_limit:
                 self.questions_count = iverbs_limit
             elif self.questions_count < 1:
                 self.questions_count = 0
+            print(f"~~Prepare yourself for {self.questions_count} questions!")
         except ValueError:
             print(f"EIVT_ERROR: incorrect questions count, must be > 0! Or 0 to exit")
 

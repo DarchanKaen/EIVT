@@ -8,6 +8,7 @@ from src.EIVT_export_worker import ExportWorker
 from src.EIVT_import_worker import ImportWorker
 
 
+
 self_path = os.path.dirname(__file__)
 db_worker = DBWorker()  #for create database run EIVT_db_worker.py !!!
 files_worker = FilesWorker(self_path)
@@ -17,9 +18,10 @@ training_worker = TrainingWorker(vocab_worker, statistics_worker)
 export_worker = ExportWorker(vocab_worker, files_worker)
 import_worker = ImportWorker(vocab_worker, files_worker)
 
+
 app_codename = "[EIVT]"
 app_name = "English Irregular Verbs Trainer [EIVT]"
-app_version = "0.10"
+app_version = "0.11"
 app_the = f"{app_name}. v{app_version}"
 welcome_message = f"{app_codename}. Welcome to the {app_name}. v{app_version}"
 exit_message = f"{app_codename}. Goodbye and good luck!!!"
@@ -53,6 +55,5 @@ while True:
             print(modes_info_message)
         else:
             print(modes_error_message)  
-
     except BaseException as error:
         print(error)
