@@ -19,11 +19,11 @@ import_worker = ImportWorker(vocab_worker, files_worker)
 
 app_codename = "[EIVT]"
 app_name = "English Irregular Verbs Trainer [EIVT]"
-app_version = "0.07"
+app_version = "0.10"
 app_the = f"{app_name}. v{app_version}"
 welcome_message = f"{app_codename}. Welcome to the {app_name}. v{app_version}"
 exit_message = f"{app_codename}. Goodbye and good luck!!!"
-modes_info_message = f"{app_codename}. Available Modes: \n\tTraining = 't' or 'training' \n\tAdd = 'a' or 'add' \n\tStatistics = 's' or 'stats' \n\tExport verbs = 'x' or 'export'  \n\tImport verbs = 'm' or 'import' \n\tInfo = 'i' or 'info' \n\tExit = 'e' or 'exit'"
+modes_info_message = f"{app_codename}. Available Modes: \n\tTraining = 't' or 'training' \n\tAdd = 'a' or 'add' \n\tStatistics = 's' or 'stats' \n\tList of verbs = 'l' or 'list' \n\tExport verbs = 'x' or 'export'  \n\tImport verbs = 'm' or 'import' \n\tInfo = 'i' or 'info' \n\tExit = 'e' or 'exit'"
 modes_error_message = "Incorrect mode!"
 
 
@@ -41,6 +41,8 @@ while True:
             training_worker.training_process()
         elif 'a' == mode or 'add' == mode:
             vocab_worker.add_process()
+        elif 'l' == mode or 'list' == mode:
+            vocab_worker.show_iverbs_list()
         elif 's' == mode or 'stats' == mode:
             statistics_worker.get_stats()
         elif 'x' == mode or 'export' == mode:

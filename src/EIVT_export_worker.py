@@ -20,7 +20,7 @@ class ExportWorker:
         export_pre_data = self.vocab_worker.get_all_irregular_verbs()
         export_data = self.__format_export_data(export_pre_data)
         self.files_worker.append_data_to_file(export_data, full_exportfile_name, self.export_directory_path)
-        print("Export finished successfully!")
+        print(f"Export finished successfully! Exported {len(export_data)} irregular verbs.")
 
 
     def __create_current_exportfile_name(self):

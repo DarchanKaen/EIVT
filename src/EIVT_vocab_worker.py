@@ -39,8 +39,10 @@ class VocabWorker:
             iverb_tuple = (iv_splitted[0], iv_splitted[1], iv_splitted[2])
             if iverb_tuple not in self.all_iverbs_list:
                 self.db_worker.execute(self.add_query, iverb_tuple) 
+                return True
             else:
                 print(f"EIVT_ERROR: this verb already exist!")
+                return False
             self.exit_add_process()
 
 
@@ -69,6 +71,13 @@ class VocabWorker:
     def get_iverbs_limit(self):
         self.get_all_irregular_verbs() 
         return self.iverbs_limit
+
+
+    def show_iverbs_list(self):
+        self.get_all_irregular_verbs()
+        for iverb in self.all_iverbs_list:
+            print(iverb)
+        print(f"===There are {len(self.all_iverbs_list)} irregular verbs.")
 
 
     def __get_random_indexes(self, max_iverbs):
