@@ -12,9 +12,12 @@ class ImportWorker:
     def import_data(self):
         import_pre_data = self.files_worker.read_data_from_file(self.default_import_full_filename, self.import_directory_name)
         import_data = self.__format_import_data(import_pre_data)
+        unique_imported_count = 0
         for iv_string in import_data:
-            self.vocab_worker.add_irregular_verb(iv_string)
-        print("Import finished successfully!")
+            is_imported = self.vocab_worker.add_irregular_verb(iv_string)
+            if True == is_imported:
+                 unique_imported_count += 1
+        print("Import finished successfully! Imported {unique_imported_count} unique irregular verbs.")
 
 
     def __format_import_data(self, unformatted_import_data):
