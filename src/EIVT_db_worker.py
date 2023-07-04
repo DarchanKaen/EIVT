@@ -40,9 +40,9 @@ class DBWorker:
             create_table_query = "CREATE TABLE eivt (id INTEGER PRIMARY KEY AUTOINCREMENT, form_I TEXT, form_II TEXT, form_III TEXT)"
             self.cursor.execute(create_table_query)
             self.disconnect()
-            print("EIVT table created successfully!")
+            print("EIVT_INFO: EIVT table created successfully!")
         except BaseException:
-            print("EIVT_WARNING: eivt table already exist.")
+            print("EIVT_INFO: eivt table already exist.")
 
 
 
