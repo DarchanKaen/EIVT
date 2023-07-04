@@ -1,8 +1,10 @@
 # EIVT
 English Irregular Verbs Trainer
 
-This simple console app has 100 english irregular verbs DB
+This simple console application has 100 english irregular verbs DB
 and you can add some verbs in-app 'by hand' or by import.
+
+For use app - just run "main.py" file.
 
 If you want to import verbs, just create file
 'eivt_import.txt' in 'Import' directory and choose import in application.
