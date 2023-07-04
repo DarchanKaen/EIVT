@@ -21,7 +21,7 @@ import_worker = ImportWorker(vocab_worker, files_worker)
 
 app_codename = "[EIVT]"
 app_name = "English Irregular Verbs Trainer [EIVT]"
-app_version = "0.11"
+app_version = "0.12"
 app_the = f"{app_name}. v{app_version}"
 welcome_message = f"{app_codename}. Welcome to the {app_name}. v{app_version}"
 exit_message = f"{app_codename}. Goodbye and good luck!!!"
