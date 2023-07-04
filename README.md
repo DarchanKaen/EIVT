@@ -1,7 +1,7 @@
 # EIVT
 English Irregular Verbs Trainer
 
-This simple console application has 100 english irregular verbs DB
+This simple console application has 140 english irregular verbs DB
 and you can add some verbs in-app 'by hand' or by import.
 
 For use app - just run "main.py" file.
@@ -16,6 +16,6 @@ it must be separated with "/" ("was/were").
 
 App also has offline-statistic for track your progress, so enjoy!
 
-Application created by default Python modules,
-so module installations don't required.
+Application created by default Python modules, so module installations don't required.
+Created by Python 3.11...idk, may be run on more older versions Python 3.
 
